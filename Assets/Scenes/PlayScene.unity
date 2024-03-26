@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controllers: {fileID: 829837880}
   _levelBundleData: {fileID: 11400000, guid: d2513d97fd6cc8a42adc773c938ed31f, type: 2}
+  _taskLabel: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,8 +582,9 @@ GameObject:
   - component: {fileID: 1149751430}
   - component: {fileID: 1149751432}
   - component: {fileID: 1149751431}
+  - component: {fileID: 1149751433}
   m_Layer: 5
-  m_Name: TaskText
+  m_Name: TaskLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,7 +629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Find {}
+  m_text: Find {card}
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -704,3 +706,15 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149751429}
   m_CullTransparentMesh: 1
+--- !u!114 &1149751433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149751429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b8d20d8b334d5a851464fc13b053c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

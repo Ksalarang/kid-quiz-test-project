@@ -10,6 +10,8 @@ namespace PlayScene.Gameplay
 {
     public class GameplayController : MonoBehaviour
     {
+        public OnTaskCardSelected OnTaskCardSelected;
+        
         [Inject]
         private CardCellFactory _cardCellFactory;
 
@@ -70,7 +72,7 @@ namespace PlayScene.Gameplay
         {
             var cards = GetRandomCardList();
             
-            _correctCard = GetRandomCard(cards);
+            SetCorrectCard(GetRandomCard(cards));
 
             for (var i = cards.Count - 1; i >= 0; i--)
             {
@@ -111,6 +113,12 @@ namespace PlayScene.Gameplay
                 cell.SetCardRotationZ(-90);
             }
         }
+
+        private void SetCorrectCard(CardData card)
+        {
+            _correctCard = card;
+            OnTaskCardSelected?.Invoke(card.Identifier);
+        }
         
         private void OnCardClick(CardData cardData)
         {
@@ -131,4 +139,6 @@ namespace PlayScene.Gameplay
 
         private bool IsLastLevel() => _currentLevel == _levelBundleData.LevelDataList.Last();
     }
+
+    public delegate void OnTaskCardSelected(string cardId);
 }
