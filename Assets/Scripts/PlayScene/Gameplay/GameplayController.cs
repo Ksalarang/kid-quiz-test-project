@@ -33,9 +33,12 @@ namespace PlayScene.Gameplay
 
         private CardData _correctCard;
 
+        private List<CardData> _usedCards;
+
         private void Awake()
         {
             _cells = new List<CardCell>();
+            _usedCards = new List<CardData>();
         }
 
         private void Start()
@@ -74,35 +77,36 @@ namespace PlayScene.Gameplay
 
         private void InitializeCells()
         {
-            var cards = GetRandomCardList();
+            var totalCards = _currentLevel.CardBundleData.CardDataList.ToList();
             
-            SetCorrectCard(GetRandomCard(cards));
+            SelectCorrectCard(totalCards);
+            
+            totalCards.Remove(_correctCard);
+            var cards = GetUniqueRandomCards(totalCards, _currentLevel.CellAmount - 1);
+            cards.Add(_correctCard);
 
-            for (var i = cards.Count - 1; i >= 0; i--)
+            for (var i = 0; i < cards.Count; i++)
             {
                 var card = cards[i];
-                
                 var cell = _cells[i];
+                
                 cell.SetCard(card);
                 cell.SetClickAction(OnCardClick);
                 FixCardSpriteRotation(cell, card);
-
-                cards.Remove(card);
             }
         }
 
-        private List<CardData> GetRandomCardList()
+        private List<CardData> GetUniqueRandomCards(List<CardData> cards, int count)
         {
-            var totalCards = _currentLevel.CardBundleData.CardDataList.ToList();
-            var cards = new List<CardData>();
+            var result = new List<CardData>();
 
-            for (var i = _currentLevel.CellAmount - 1; i >= 0; i--)
+            for (var i = count - 1; i >= 0; i--)
             {
-                var card = GetRandomCard(totalCards);
-                cards.Add(card);
-                totalCards.Remove(card);
+                var card = GetRandomCard(cards);
+                result.Add(card);
+                cards.Remove(card);
             }
-            return cards;
+            return result;
         }
 
         private CardData GetRandomCard(List<CardData> cards)
@@ -118,12 +122,21 @@ namespace PlayScene.Gameplay
             }
         }
 
-        private void SetCorrectCard(CardData card)
+        private void SelectCorrectCard(List<CardData> cards)
         {
-            _correctCard = card;
-            OnTaskCardSelected?.Invoke(card.Identifier);
+            CardData correctCard;
+            var count = 0;
+            do
+            {
+                correctCard = GetRandomCard(cards);
+                count++;
+            } while (_usedCards.Contains(correctCard) || count < cards.Count);
+            
+            _correctCard = correctCard;
+            _usedCards.Add(correctCard);
+            OnTaskCardSelected?.Invoke(correctCard.Identifier);
         }
-        
+
         private void OnCardClick(CardData cardData)
         {
             if (cardData == _correctCard)
@@ -137,6 +150,7 @@ namespace PlayScene.Gameplay
             if (IsLastLevel())
             {
                 ResetLevelIndex();
+                _usedCards.Clear();
                 
                 _restartPanel.Show(() =>
                 {
