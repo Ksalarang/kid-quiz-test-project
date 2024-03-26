@@ -79,6 +79,7 @@ namespace PlayScene.Gameplay
                 var cell = _cells[i];
                 cell.SetCard(card);
                 cell.SetClickAction(OnCardClick);
+                FixCardSpriteRotation(cell, card);
 
                 cards.Remove(card);
             }
@@ -101,6 +102,14 @@ namespace PlayScene.Gameplay
         private CardData GetRandomCard(List<CardData> cards)
         {
             return cards.Count == 0 ? null : cards[Random.Range(0, cards.Count)];
+        }
+
+        private void FixCardSpriteRotation(CardCell cell, CardData card)
+        {
+            if (card.Identifier == "7" || card.Identifier == "8")
+            {
+                cell.SetCardRotationZ(-90);
+            }
         }
         
         private void OnCardClick(CardData cardData)

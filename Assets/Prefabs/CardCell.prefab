@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a8f7dfb0114a56879e036690c0aa6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 7136220686011990980}
+  _cardSpriteRenderer: {fileID: 7136220686011990980}
 --- !u!61 &3774458009451081617
 BoxCollider2D:
   m_ObjectHideFlags: 0
