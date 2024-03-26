@@ -3,7 +3,7 @@ using PlayScene.CardCells;
 using UnityEngine;
 using Zenject;
 
-namespace PlayScene
+namespace PlayScene.Gameplay
 {
     public class GameplayController : MonoBehaviour
     {
