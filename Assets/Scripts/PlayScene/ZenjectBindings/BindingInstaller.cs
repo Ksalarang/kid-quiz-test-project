@@ -1,16 +1,16 @@
 ﻿using Zenject;
 
-namespace ZenjectBindings
+namespace PlayScene.ZenjectBindings
 {
     public class BindingInstaller : MonoInstaller
     {
-        
-
-        public override void InstallBindings() {
+        public override void InstallBindings()
+        {
             
         }
-    
-        void bind<T>(T instance) {
+
+        private void Bind<T>(T instance)
+        {
             Container.BindInstance(instance);
         }
     }
