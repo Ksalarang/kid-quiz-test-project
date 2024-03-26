@@ -1,5 +1,7 @@
 ﻿using PlayScene.CardCells;
 using PlayScene.Data;
+using PlayScene.Data.Cards;
+using PlayScene.Data.Levels;
 using PlayScene.Gameplay;
 using UnityEngine;
 using Zenject;
@@ -11,6 +13,8 @@ namespace PlayScene.ZenjectBindings
     {
         [SerializeField]
         private GameObject _controllers;
+        [SerializeField]
+        private LevelBundleData _levelBundleData;
         
         public override void InstallBindings()
         {
@@ -18,6 +22,8 @@ namespace PlayScene.ZenjectBindings
             Bind(_controllers.GetComponent<GameplayController>());
             Bind(_controllers.GetComponent<CardCellFactory>());
             Bind(_controllers.GetComponent<CardCellGrid>());
+            // data
+            Bind(_levelBundleData);
         }
 
         private void Bind<T>(T instance)

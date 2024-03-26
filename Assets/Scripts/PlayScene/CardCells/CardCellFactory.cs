@@ -8,28 +8,26 @@ namespace PlayScene.CardCells
     {
         [SerializeField]
         private GameObject _cardCellPrefab;
-        
+
         [SerializeField]
         private Transform _cellContainer;
 
         [Inject]
-        private DiContainer _diContainer;
-
-        // ReSharper disable Unity.PerformanceAnalysis
-        public CardCell Get()
+        private DiContainer _diContainer; // ReSharper disable Unity.PerformanceAnalysis
+        private CardCell Get()
         {
             return _diContainer.InstantiatePrefabForComponent<CardCell>(_cardCellPrefab, _cellContainer);
         }
 
-        public List<CardCell> GetList(int count)
+        public List<CardCell> GetCells(int count)
         {
             var cells = new List<CardCell>();
-            
+
             for (var i = 0; i < count; i++)
             {
                 cells.Add(Get());
             }
-            
+
             return cells;
         }
 

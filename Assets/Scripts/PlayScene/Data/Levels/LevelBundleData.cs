@@ -6,8 +6,13 @@ namespace PlayScene.Data.Levels
     public class LevelBundleData : ScriptableObject
     {
         [SerializeField]
+        private int _gridWidth;
+        
+        [SerializeField]
         private LevelData[] _levelDataList;
 
+        public int GridWidth => _gridWidth;
+        
         public LevelData[] LevelDataList => _levelDataList;
     }
 }

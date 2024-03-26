@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using PlayScene.CardCells;
+using PlayScene.Data.Cards;
+using PlayScene.Data.Levels;
 using UnityEngine;
 using Zenject;
 
@@ -7,19 +9,20 @@ namespace PlayScene.Gameplay
 {
     public class GameplayController : MonoBehaviour
     {
-        [SerializeField]
-        private int _cellCount;
-
-        [SerializeField]
-        private Vector2Int _gridSize;
-
         [Inject]
         private CardCellFactory _cardCellFactory;
 
         [Inject]
         private CardCellGrid _cardCellGrid;
 
+        [Inject]
+        private LevelBundleData _levelBundleData;
+
         private List<CardCell> _cells;
+
+        private LevelData _currentLevelData;
+        
+        private int _currentLevelIndex = -1;
 
         private void Awake()
         {
@@ -28,22 +31,28 @@ namespace PlayScene.Gameplay
 
         private void Start()
         {
-            RespawnCellGrid();
+            StartNextLevel();
         }
 
-        private void RespawnCellGrid()
+        private void StartNextLevel()
+        {
+            _currentLevelData = _levelBundleData.LevelDataList[++_currentLevelIndex];
+            
+            CreateGrid();
+        }
+
+        private void CreateGrid()
         {
             _cardCellFactory.DestroyCells(_cells);
-            _cells = _cardCellFactory.GetList(_cellCount);
-            _cardCellGrid.PositionCardCells(_cells, _gridSize);
+            _cells = _cardCellFactory.GetCells(_currentLevelData.CellAmount);
+            _cardCellGrid.PositionCells(_cells, GetGridSize(_currentLevelData));
         }
 
-        private void Update()
+        private Vector2Int GetGridSize(LevelData levelData)
         {
-            if (Input.GetKey(KeyCode.R))
-            {
-                RespawnCellGrid();
-            }
+            var x = _levelBundleData.GridWidth;
+            var y = Mathf.CeilToInt((float) levelData.CellAmount / _levelBundleData.GridWidth);
+            return new Vector2Int(x, y);
         }
     }
 }

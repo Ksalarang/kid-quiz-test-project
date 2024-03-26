@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa4490ebea14776b5af73060a7a1a34, type: 3}
   m_Name: Levels
   m_EditorClassIdentifier: 
-  _levelDataList: []
+  _gridWidth: 3
+  _levelDataList:
+  - _cellAmount: 3
+    _cardBundleData: {fileID: 11400000, guid: 6e2ce4592cf5a8b4593a19427f4e710b, type: 2}
+  - _cellAmount: 6
+    _cardBundleData: {fileID: 11400000, guid: 6e2ce4592cf5a8b4593a19427f4e710b, type: 2}
+  - _cellAmount: 9
+    _cardBundleData: {fileID: 11400000, guid: 6e2ce4592cf5a8b4593a19427f4e710b, type: 2}
