@@ -25,6 +25,12 @@ namespace PlayScene.Gameplay
         [Inject]
         private RestartPanel _restartPanel;
 
+        [Inject]
+        private TaskLabel _taskLabel;
+
+        [Inject]
+        private CardCellAnimator _cardCellAnimator;
+
         private List<CardCell> _cells;
 
         private LevelData _currentLevel;
@@ -45,6 +51,7 @@ namespace PlayScene.Gameplay
         {
             ResetLevelIndex();
             StartNextLevel();
+            ShowUI();
         }
 
         private void ResetLevelIndex()
@@ -58,6 +65,12 @@ namespace PlayScene.Gameplay
             
             CreateCellGrid();
             InitializeCells();
+        }
+
+        private void ShowUI()
+        {
+            _taskLabel.Show();
+            _cardCellAnimator.Show();
         }
 
         private void CreateCellGrid()
@@ -155,6 +168,7 @@ namespace PlayScene.Gameplay
                 _restartPanel.Show(() =>
                 {
                     StartNextLevel();
+                    ShowUI();
                 });
             }
             else

@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 829837883}
   - component: {fileID: 829837882}
   - component: {fileID: 829837881}
+  - component: {fileID: 829837885}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -573,6 +574,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &829837885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829837880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e38026957f425fa6d9da4d7d8d2343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _showDuration: 0.6
+  _amplitude: 1
+  _period: 0.27
+  cellsTransform: {fileID: 602583671}
 --- !u!1 &958694655
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,8 +791,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 16777215
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -854,6 +871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b8d20d8b334d5a851464fc13b053c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fadeDuration: 0.3
 --- !u!1 &1571513144
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ namespace PlayScene.ZenjectBindings
             Bind(_controllers.GetComponent<GameplayController>());
             Bind(_controllers.GetComponent<CardCellFactory>());
             Bind(_controllers.GetComponent<CardCellGrid>());
+            Bind(_controllers.GetComponent<CardCellAnimator>());
             // data
             Bind(_levelBundleData);
             // UI
