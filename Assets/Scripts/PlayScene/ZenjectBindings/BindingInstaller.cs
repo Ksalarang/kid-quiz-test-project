@@ -18,6 +18,9 @@ namespace PlayScene.ZenjectBindings
 
         [SerializeField]
         private TaskLabel _taskLabel;
+
+        [SerializeField]
+        private RestartPanel _restartPanel;
         
         public override void InstallBindings()
         {
@@ -29,6 +32,7 @@ namespace PlayScene.ZenjectBindings
             Bind(_levelBundleData);
             // UI
             Bind(_taskLabel);
+            Bind(_restartPanel);
         }
 
         private void Bind<T>(T instance)

@@ -3,6 +3,7 @@ using System.Linq;
 using PlayScene.CardCells;
 using PlayScene.Data.Cards;
 using PlayScene.Data.Levels;
+using PlayScene.UI;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +21,9 @@ namespace PlayScene.Gameplay
 
         [Inject]
         private LevelBundleData _levelBundleData;
+
+        [Inject]
+        private RestartPanel _restartPanel;
 
         private List<CardCell> _cells;
 
@@ -133,8 +137,16 @@ namespace PlayScene.Gameplay
             if (IsLastLevel())
             {
                 ResetLevelIndex();
+                
+                _restartPanel.Show(() =>
+                {
+                    StartNextLevel();
+                });
             }
-            StartNextLevel();
+            else
+            {
+                StartNextLevel();
+            }
         }
 
         private bool IsLastLevel() => _currentLevel == _levelBundleData.LevelDataList.Last();
