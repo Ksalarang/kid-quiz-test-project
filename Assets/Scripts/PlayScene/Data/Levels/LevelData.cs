@@ -1,4 +1,5 @@
 ﻿using System;
+using PlayScene.Data.Cards;
 using UnityEngine;
 
 namespace PlayScene.Data.Levels

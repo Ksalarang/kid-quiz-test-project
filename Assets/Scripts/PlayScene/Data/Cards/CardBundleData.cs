@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PlayScene.Data
+namespace PlayScene.Data.Cards
 {
     [CreateAssetMenu(fileName = "New CardBundleData", menuName = "Card Bundle Data", order = 0)]
     public class CardBundleData : ScriptableObject

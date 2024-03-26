@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PlayScene.Data
+namespace PlayScene.Data.Cards
 {
     [Serializable]
     public class CardData
