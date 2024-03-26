@@ -12,5 +12,9 @@ namespace PlayScene.Data.Levels
 
         [SerializeField]
         private CardBundleData _cardBundleData;
+
+        public int CellAmount => _cellAmount;
+
+        public CardBundleData CardBundleData => _cardBundleData;
     }
 }
