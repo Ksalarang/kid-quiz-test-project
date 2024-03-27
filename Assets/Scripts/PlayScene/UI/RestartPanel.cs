@@ -2,19 +2,25 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace PlayScene.UI
 {
     public class RestartPanel : MonoBehaviour
     {
         [SerializeField]
+        private float _fadeDuration;
+        
+        [SerializeField]
         private CanvasGroup _canvasGroup;
         
         [SerializeField]
         private Button _restartButton;
 
-        [SerializeField]
-        private float _fadeDuration;
+        [Inject]
+        private LoadingPanel _loadingPanel;
+
+        private Tween _fadeTween;
 
         private Action _hideAction;
 
@@ -25,25 +31,28 @@ namespace PlayScene.UI
 
         private void OnRestartButtonClick()
         {
-            Hide();
+            Fade(1f, 0f, () =>
+            {
+                gameObject.SetActive(false);
+            });
+            _loadingPanel.Show(_hideAction);
         }
 
         public void Show(Action hideAction)
         {
             _hideAction = hideAction;
             gameObject.SetActive(true);
-            _canvasGroup.alpha = 0f;
-            _canvasGroup.DOFade(1f, _fadeDuration);
+            Fade(0f, 1f);
         }
 
-        void Hide()
+        private void Fade(float startAlpha, float endAlpha, TweenCallback callback = null)
         {
-            _canvasGroup.alpha = 1f;
-            _canvasGroup.DOFade(0f, _fadeDuration).OnComplete(() =>
-            {
-                gameObject.SetActive(false);
-                _hideAction?.Invoke();
-            });
+            _fadeTween?.Kill();
+            
+            _canvasGroup.alpha = startAlpha;
+            _fadeTween = DOTween.Sequence()
+                .Append(_canvasGroup.DOFade(endAlpha, _fadeDuration))
+                .AppendCallback(callback);
         }
     }
 }

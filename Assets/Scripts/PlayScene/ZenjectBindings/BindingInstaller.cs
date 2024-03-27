@@ -23,6 +23,9 @@ namespace PlayScene.ZenjectBindings
         [SerializeField]
         private RestartPanel _restartPanel;
 
+        [SerializeField]
+        private LoadingPanel _loadingPanel;
+
         public override void InstallBindings()
         {
             // controllers
@@ -36,6 +39,7 @@ namespace PlayScene.ZenjectBindings
             // UI
             Bind(_taskLabel);
             Bind(_restartPanel);
+            Bind(_loadingPanel);
         }
 
         private void Bind<T>(T instance)
