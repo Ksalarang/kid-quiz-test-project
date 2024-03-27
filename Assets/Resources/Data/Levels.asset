@@ -17,6 +17,6 @@ MonoBehaviour:
   - _cellAmount: 3
     _cardBundleData: {fileID: 11400000, guid: d2a80681aaa4e70429a0d80db53c060d, type: 2}
   - _cellAmount: 6
-    _cardBundleData: {fileID: 11400000, guid: d2a80681aaa4e70429a0d80db53c060d, type: 2}
+    _cardBundleData: {fileID: 11400000, guid: 6e2ce4592cf5a8b4593a19427f4e710b, type: 2}
   - _cellAmount: 9
     _cardBundleData: {fileID: 11400000, guid: d2a80681aaa4e70429a0d80db53c060d, type: 2}
