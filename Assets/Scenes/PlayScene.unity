@@ -534,7 +534,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gridPosition: {x: 0, y: 0}
-  _cellScale: 1
 --- !u!114 &829837882
 MonoBehaviour:
   m_ObjectHideFlags: 0
