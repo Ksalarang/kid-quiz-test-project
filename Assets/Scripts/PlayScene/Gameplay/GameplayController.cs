@@ -150,11 +150,15 @@ namespace PlayScene.Gameplay
             OnTaskCardSelected?.Invoke(correctCard.Identifier);
         }
 
-        private void OnCardClick(CardData cardData)
+        private void OnCardClick(CardCell cell)
         {
-            if (cardData == _correctCard)
+            if (cell.CardData == _correctCard)
             {
                 OnCorrectCardSelected();
+            }
+            else
+            {
+                cell.AnimateIncorrectAnswer();
             }
         }
 
