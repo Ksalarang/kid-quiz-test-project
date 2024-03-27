@@ -103,11 +103,8 @@ namespace PlayScene.Gameplay
             var totalCards = _currentLevel.CardBundleData.CardDataList.ToList();
             
             SelectCorrectCard(totalCards);
-            
-            totalCards.Remove(_correctCard);
-            var cards = GetUniqueRandomCards(totalCards, _currentLevel.CellAmount - 1);
-            var randomIndex = Random.Range(0, _currentLevel.CellAmount);
-            cards.Insert(randomIndex, _correctCard);
+
+            var cards = GetCardsForCurrentLevel(totalCards);
 
             for (var i = 0; i < cards.Count; i++)
             {
@@ -118,6 +115,40 @@ namespace PlayScene.Gameplay
                 cell.SetClickAction(OnCardClick);
                 FixCardSpriteRotation(cell, card);
             }
+        }
+        
+        private void SelectCorrectCard(List<CardData> cards)
+        {
+            CardData correctCard;
+            var count = 0;
+            
+            do
+            {
+                correctCard = GetRandomCard(cards);
+                count++;
+            } while (_usedCards.Contains(correctCard) || count < cards.Count);
+
+            if (count == cards.Count)
+            {
+                Debug.LogError("All cards are used. Amount of levels must be <= than card bundle size");
+            }
+            
+            _correctCard = correctCard;
+            _usedCards.Add(correctCard);
+            
+            OnTaskCardSelected?.Invoke(correctCard.Identifier);
+        }
+
+        private List<CardData> GetCardsForCurrentLevel(List<CardData> totalCards)
+        {
+            totalCards.Remove(_correctCard);
+            
+            var cards = GetUniqueRandomCards(totalCards, _currentLevel.CellAmount - 1);
+            
+            var randomIndex = Random.Range(0, _currentLevel.CellAmount);
+            cards.Insert(randomIndex, _correctCard);
+            
+            return cards;
         }
 
         private List<CardData> GetUniqueRandomCards(List<CardData> cards, int count)
@@ -144,21 +175,6 @@ namespace PlayScene.Gameplay
             {
                 cell.SetCardRotationZ(-90);
             }
-        }
-
-        private void SelectCorrectCard(List<CardData> cards)
-        {
-            CardData correctCard;
-            var count = 0;
-            do
-            {
-                correctCard = GetRandomCard(cards);
-                count++;
-            } while (_usedCards.Contains(correctCard) || count < cards.Count);
-            
-            _correctCard = correctCard;
-            _usedCards.Add(correctCard);
-            OnTaskCardSelected?.Invoke(correctCard.Identifier);
         }
 
         private void OnCardClick(CardCell cell)

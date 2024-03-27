@@ -7,7 +7,6 @@ using PlayScene.UI;
 using UnityEngine;
 using Zenject;
 
-// ReSharper disable All
 namespace PlayScene.ZenjectBindings
 {
     public class BindingInstaller : MonoInstaller

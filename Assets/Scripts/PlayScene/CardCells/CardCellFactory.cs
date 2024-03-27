@@ -19,7 +19,6 @@ namespace PlayScene.CardCells
         [Inject]
         private CellData _cellData;
         
-        // ReSharper disable Unity.PerformanceAnalysis
         private CardCell Get()
         {
             var cell = _diContainer.InstantiatePrefabForComponent<CardCell>(_cardCellPrefab, _cellContainer);
