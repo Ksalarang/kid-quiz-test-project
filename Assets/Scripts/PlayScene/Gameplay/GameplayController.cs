@@ -35,6 +35,9 @@ namespace PlayScene.Gameplay
         [Inject]
         private StarParticleController _starParticles;
 
+        [Inject]
+        private ClickBlocker _clickBlocker;
+
         private List<CardCell> _cells;
 
         private LevelData _currentLevel;
@@ -183,6 +186,7 @@ namespace PlayScene.Gameplay
             {
                 var duration = cell.AnimateCorrectAnswer(OnCorrectCardSelected);
                 _starParticles.RestartAt(cell.transform.position, duration);
+                _clickBlocker.Show(duration);
             }
             else
             {

@@ -32,6 +32,9 @@ namespace PlayScene.ZenjectBindings
         [SerializeField]
         private LoadingPanel _loadingPanel;
 
+        [SerializeField]
+        private ClickBlocker _clickBlocker;
+
         public override void InstallBindings()
         {
             // controllers
@@ -47,6 +50,7 @@ namespace PlayScene.ZenjectBindings
             Bind(_taskLabel);
             Bind(_restartPanel);
             Bind(_loadingPanel);
+            Bind(_clickBlocker);
         }
 
         private void Bind<T>(T instance)
