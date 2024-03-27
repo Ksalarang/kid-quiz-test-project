@@ -126,7 +126,7 @@ namespace PlayScene.Gameplay
             {
                 correctCard = GetRandomCard(cards);
                 count++;
-            } while (_usedCards.Contains(correctCard) || count < cards.Count);
+            } while (_usedCards.Contains(correctCard) && count < cards.Count);
 
             if (count == cards.Count)
             {
