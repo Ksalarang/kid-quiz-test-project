@@ -706,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadeDuration: 0.5
-  _loadDuration: 2
+  _loadDuration: 1
   _canvasGroup: {fileID: 791583576}
   _loadingBarRectTransform: {fileID: 1156175946}
 --- !u!225 &791583576
