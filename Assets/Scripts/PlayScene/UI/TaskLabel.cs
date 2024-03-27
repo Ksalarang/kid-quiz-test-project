@@ -28,8 +28,15 @@ namespace PlayScene.UI
 
         public void Show()
         {
+            SetVisible(true);
+            
             label.alpha = 0f;
             label.DOFade(1f, _fadeDuration);
+        }
+
+        public void SetVisible(bool visible)
+        {
+            gameObject.SetActive(visible);
         }
     }
 }

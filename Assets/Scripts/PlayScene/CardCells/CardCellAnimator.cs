@@ -19,9 +19,16 @@ namespace PlayScene.CardCells
 
         public void Show()
         {
+            SetVisible(true);
+            
             var defaultScale = cellsTransform.localScale;
             cellsTransform.localScale = Vector3.zero;
             cellsTransform.DOScale(defaultScale, _showDuration).SetEase(Ease.OutElastic, _amplitude, _period);
+        }
+
+        public void SetVisible(bool visible)
+        {
+            cellsTransform.gameObject.SetActive(visible);
         }
     }
 }

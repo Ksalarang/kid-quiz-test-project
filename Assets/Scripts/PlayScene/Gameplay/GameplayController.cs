@@ -73,8 +73,14 @@ namespace PlayScene.Gameplay
 
         private void ShowUI()
         {
-            _taskLabel.Show();
             _cardCellAnimator.Show();
+            _taskLabel.Show();
+        }
+
+        private void HideUI()
+        {
+            _cardCellAnimator.SetVisible(false);
+            _taskLabel.SetVisible(false);
         }
 
         private void CreateCellGrid()
@@ -175,11 +181,16 @@ namespace PlayScene.Gameplay
                 ResetLevelIndex();
                 _usedCards.Clear();
                 
-                _restartPanel.Show(() =>
-                {
-                    StartNextLevel();
-                    ShowUI();
-                });
+                _restartPanel.Show(
+                    () =>
+                    {
+                        HideUI();
+                    }, 
+                    () => 
+                    {
+                        StartNextLevel();
+                        ShowUI();
+                    });
             }
             else
             {

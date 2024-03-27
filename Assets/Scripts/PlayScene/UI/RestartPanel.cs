@@ -22,7 +22,9 @@ namespace PlayScene.UI
 
         private Tween _fadeTween;
 
-        private Action _hideAction;
+        private Action _onRestartAction;
+        
+        private Action _onHideAction;
 
         private void Awake()
         {
@@ -35,12 +37,15 @@ namespace PlayScene.UI
             {
                 gameObject.SetActive(false);
             });
-            _loadingPanel.Show(_hideAction);
+            _onRestartAction?.Invoke();
+            _loadingPanel.Show(_onHideAction);
         }
 
-        public void Show(Action hideAction)
+        public void Show(Action onRestartAction, Action onHideAction)
         {
-            _hideAction = hideAction;
+            _onRestartAction = onRestartAction;
+            _onHideAction = onHideAction;
+            
             gameObject.SetActive(true);
             Fade(0f, 1f);
         }
@@ -50,6 +55,7 @@ namespace PlayScene.UI
             _fadeTween?.Kill();
             
             _canvasGroup.alpha = startAlpha;
+            
             _fadeTween = DOTween.Sequence()
                 .Append(_canvasGroup.DOFade(endAlpha, _fadeDuration))
                 .AppendCallback(callback);
