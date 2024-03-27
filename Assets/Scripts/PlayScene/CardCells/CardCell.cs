@@ -13,10 +13,7 @@ namespace PlayScene.CardCells
         private float _shakeDuration;
 
         [SerializeField]
-        private float _firstShakeDistance;
-
-        [SerializeField]
-        private int _shakeCount;
+        private float _shakeDistance;
 
         [Header("Bounce animation")]
         [SerializeField]
@@ -33,7 +30,7 @@ namespace PlayScene.CardCells
 
         private Action<CardCell> _cellClick;
 
-        private Sequence _shakeSequence;
+        private Tween _shakeTween;
 
         private CardData _cardData;
 
@@ -64,19 +61,14 @@ namespace PlayScene.CardCells
 
         public void AnimateIncorrectAnswer()
         {
-            _shakeSequence?.Kill();
-
-            _shakeSequence = DOTween.Sequence();
-            var initialX = _cardTransform.localPosition.x;
-            var oneShakeDuration = _shakeDuration / (_shakeCount + 1);
+            _shakeTween?.Kill(true);
             
-            for (var i = 0; i < _shakeCount; i++)
-            {
-                var x = initialX + _firstShakeDistance + _firstShakeDistance * i;
-                if (i % 2 != 0) x = -x;
-                _shakeSequence.Append(_cardTransform.DOLocalMoveX(x, oneShakeDuration));
-            }
-            _shakeSequence.Append(_cardTransform.DOLocalMoveX(initialX, oneShakeDuration));
+            var initialPosition = _cardTransform.localPosition;
+            _cardTransform.localPosition = new Vector3(-_shakeDistance, initialPosition.y, initialPosition.z);
+            
+            _shakeTween = _cardTransform
+                .DOLocalMoveX(initialPosition.x, _shakeDuration)
+                .SetEase(Ease.OutElastic);
         }
 
         public float AnimateCorrectAnswer(Action endAction)

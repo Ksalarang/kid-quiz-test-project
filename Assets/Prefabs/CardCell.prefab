@@ -73,9 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a8f7dfb0114a56879e036690c0aa6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeDuration: 0.4
-  _firstShakeDistance: 0.05
-  _shakeCount: 4
+  _shakeDuration: 1
+  _shakeDistance: 0.2
   _bounceDuration: 1
   _cardSpriteRenderer: {fileID: 7136220686011990980}
   _backgroundRenderer: {fileID: 5199151037475142173}
