@@ -22,8 +22,12 @@ namespace PlayScene.CardCells
         [SerializeField]
         private float _bounceDuration;
         
+        [Header("Components")]
         [SerializeField]
         private SpriteRenderer _cardSpriteRenderer;
+
+        [SerializeField]
+        private SpriteRenderer _backgroundRenderer;
 
         private Transform _cardTransform;
 
@@ -85,6 +89,11 @@ namespace PlayScene.CardCells
             sequence.AppendCallback(endAction.Invoke);
             
             return _bounceDuration;
+        }
+
+        public void SetBackgroundColor(Color color)
+        {
+            _backgroundRenderer.color = color;
         }
 
         public void OnPointerClick(PointerEventData eventData)

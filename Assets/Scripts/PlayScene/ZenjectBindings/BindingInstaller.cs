@@ -1,4 +1,5 @@
 ﻿using PlayScene.CardCells;
+using PlayScene.Data.Cells;
 using PlayScene.Data.Levels;
 using PlayScene.Gameplay;
 using PlayScene.Particles;
@@ -11,12 +12,18 @@ namespace PlayScene.ZenjectBindings
 {
     public class BindingInstaller : MonoInstaller
     {
+        [Header("Controllers")]
         [SerializeField]
         private GameObject _controllers;
         
+        [Header("Data")]
         [SerializeField]
         private LevelBundleData _levelBundleData;
 
+        [SerializeField]
+        private CellData _cellData;
+
+        [Header("UI")]
         [SerializeField]
         private TaskLabel _taskLabel;
 
@@ -36,6 +43,7 @@ namespace PlayScene.ZenjectBindings
             Bind(_controllers.GetComponent<StarParticleController>());
             // data
             Bind(_levelBundleData);
+            Bind(_cellData);
             // UI
             Bind(_taskLabel);
             Bind(_restartPanel);

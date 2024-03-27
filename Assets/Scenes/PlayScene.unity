@@ -379,6 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controllers: {fileID: 829837880}
   _levelBundleData: {fileID: 11400000, guid: d2513d97fd6cc8a42adc773c938ed31f, type: 2}
+  _cellData: {fileID: 11400000, guid: 1888a231eb96190428306f480be28542, type: 2}
   _taskLabel: {fileID: 1149751433}
   _restartPanel: {fileID: 1825752536}
   _loadingPanel: {fileID: 791583575}

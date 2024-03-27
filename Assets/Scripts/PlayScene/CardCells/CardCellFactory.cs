@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PlayScene.Data.Cells;
 using UnityEngine;
 using Zenject;
 
@@ -14,11 +15,20 @@ namespace PlayScene.CardCells
 
         [Inject]
         private DiContainer _diContainer;
+
+        [Inject]
+        private CellData _cellData;
         
         // ReSharper disable Unity.PerformanceAnalysis
         private CardCell Get()
         {
-            return _diContainer.InstantiatePrefabForComponent<CardCell>(_cardCellPrefab, _cellContainer);
+            var cell = _diContainer.InstantiatePrefabForComponent<CardCell>(_cardCellPrefab, _cellContainer);
+
+            var index = Random.Range(0, _cellData.BackgroundColors.Length);
+            var color = _cellData.BackgroundColors[index];
+            cell.SetBackgroundColor(color);
+            
+            return cell;
         }
 
         public List<CardCell> GetCells(int count)
