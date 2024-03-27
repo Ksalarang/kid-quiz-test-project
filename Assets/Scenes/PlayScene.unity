@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb1199cb7754618bd9ad6375e3d542f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeDuration: 1
+  _fadeDuration: 0.5
   _loadDuration: 2
   _canvasGroup: {fileID: 791583576}
   _loadingBarRectTransform: {fileID: 1156175946}
@@ -6169,7 +6169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d3ad6e84ef40f6b06d29829a445a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeDuration: 0.3
+  _fadeDuration: 0.5
   _canvasGroup: {fileID: 1825752535}
   _restartButton: {fileID: 1571513146}
 --- !u!114 &1825752537
