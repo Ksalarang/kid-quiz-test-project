@@ -100,7 +100,8 @@ namespace PlayScene.Gameplay
             
             totalCards.Remove(_correctCard);
             var cards = GetUniqueRandomCards(totalCards, _currentLevel.CellAmount - 1);
-            cards.Add(_correctCard);
+            var randomIndex = Random.Range(0, _currentLevel.CellAmount);
+            cards.Insert(randomIndex, _correctCard);
 
             for (var i = 0; i < cards.Count; i++)
             {

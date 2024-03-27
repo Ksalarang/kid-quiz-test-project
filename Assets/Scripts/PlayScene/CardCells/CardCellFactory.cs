@@ -13,7 +13,9 @@ namespace PlayScene.CardCells
         private Transform _cellContainer;
 
         [Inject]
-        private DiContainer _diContainer; // ReSharper disable Unity.PerformanceAnalysis
+        private DiContainer _diContainer;
+        
+        // ReSharper disable Unity.PerformanceAnalysis
         private CardCell Get()
         {
             return _diContainer.InstantiatePrefabForComponent<CardCell>(_cardCellPrefab, _cellContainer);
