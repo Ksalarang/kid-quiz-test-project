@@ -75,7 +75,7 @@ namespace PlayScene.CardCells
             _shakeSequence.Append(_cardTransform.DOLocalMoveX(initialX, oneShakeDuration));
         }
 
-        public void AnimateCorrectAnswer(Action endAction)
+        public float AnimateCorrectAnswer(Action endAction)
         {
             var initialScale = _cardTransform.localScale;
             _cardTransform.localScale = initialScale * 0.75f;
@@ -83,6 +83,8 @@ namespace PlayScene.CardCells
             var sequence = DOTween.Sequence();
             sequence.Append(_cardTransform.DOScale(initialScale, _bounceDuration).SetEase(Ease.OutElastic));
             sequence.AppendCallback(endAction.Invoke);
+            
+            return _bounceDuration;
         }
 
         public void OnPointerClick(PointerEventData eventData)

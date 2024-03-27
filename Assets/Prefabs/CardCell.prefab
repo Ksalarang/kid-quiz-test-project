@@ -75,7 +75,7 @@ MonoBehaviour:
   _shakeDuration: 0.4
   _firstShakeDistance: 0.05
   _shakeCount: 4
-  _bounceDuration: 1
+  _bounceDuration: 2
   _cardSpriteRenderer: {fileID: 7136220686011990980}
 --- !u!1 &3681230562962692298
 GameObject:

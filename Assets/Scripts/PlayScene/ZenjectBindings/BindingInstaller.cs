@@ -1,6 +1,7 @@
 ﻿using PlayScene.CardCells;
 using PlayScene.Data.Levels;
 using PlayScene.Gameplay;
+using PlayScene.Particles;
 using PlayScene.UI;
 using UnityEngine;
 using Zenject;
@@ -21,7 +22,7 @@ namespace PlayScene.ZenjectBindings
 
         [SerializeField]
         private RestartPanel _restartPanel;
-        
+
         public override void InstallBindings()
         {
             // controllers
@@ -29,6 +30,7 @@ namespace PlayScene.ZenjectBindings
             Bind(_controllers.GetComponent<CardCellFactory>());
             Bind(_controllers.GetComponent<CardCellGrid>());
             Bind(_controllers.GetComponent<CardCellAnimator>());
+            Bind(_controllers.GetComponent<StarParticleController>());
             // data
             Bind(_levelBundleData);
             // UI

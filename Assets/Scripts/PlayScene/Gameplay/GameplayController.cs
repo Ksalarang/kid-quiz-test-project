@@ -3,6 +3,7 @@ using System.Linq;
 using PlayScene.CardCells;
 using PlayScene.Data.Cards;
 using PlayScene.Data.Levels;
+using PlayScene.Particles;
 using PlayScene.UI;
 using UnityEngine;
 using Zenject;
@@ -30,6 +31,9 @@ namespace PlayScene.Gameplay
 
         [Inject]
         private CardCellAnimator _cardCellAnimator;
+
+        [Inject]
+        private StarParticleController _starParticles;
 
         private List<CardCell> _cells;
 
@@ -154,7 +158,8 @@ namespace PlayScene.Gameplay
         {
             if (cell.CardData == _correctCard)
             {
-                cell.AnimateCorrectAnswer(OnCorrectCardSelected);
+                var duration = cell.AnimateCorrectAnswer(OnCorrectCardSelected);
+                _starParticles.RestartAt(cell.transform.position, duration);
             }
             else
             {
