@@ -77,6 +77,7 @@ MonoBehaviour:
   _shakeDistance: 0.2
   _bounceDuration: 1
   _cardSpriteRenderer: {fileID: 7136220686011990980}
+  _cardTransform: {fileID: 1812338377207510733}
   _backgroundRenderer: {fileID: 5199151037475142173}
 --- !u!1 &3681230562962692298
 GameObject:

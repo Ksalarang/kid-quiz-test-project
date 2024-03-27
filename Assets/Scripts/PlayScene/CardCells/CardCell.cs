@@ -24,9 +24,10 @@ namespace PlayScene.CardCells
         private SpriteRenderer _cardSpriteRenderer;
 
         [SerializeField]
-        private SpriteRenderer _backgroundRenderer;
-
         private Transform _cardTransform;
+        
+        [SerializeField]
+        private SpriteRenderer _backgroundRenderer;
 
         private Action<CardCell> _cellClick;
 
@@ -35,11 +36,6 @@ namespace PlayScene.CardCells
         private CardData _cardData;
 
         public CardData CardData => _cardData;
-
-        private void Awake()
-        {
-            _cardTransform = _cardSpriteRenderer.transform;
-        }
 
         public void SetCard(CardData cardData)
         {
