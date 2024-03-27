@@ -8,6 +8,7 @@ namespace PlayScene.CardCells
 {
     public class CardCell : MonoBehaviour, IPointerClickHandler
     {
+        [Header("Shake animation")]
         [SerializeField]
         private float _shakeDuration;
 
@@ -16,6 +17,10 @@ namespace PlayScene.CardCells
 
         [SerializeField]
         private int _shakeCount;
+
+        [Header("Bounce animation")]
+        [SerializeField]
+        private float _bounceDuration;
         
         [SerializeField]
         private SpriteRenderer _cardSpriteRenderer;
@@ -68,6 +73,16 @@ namespace PlayScene.CardCells
                 _shakeSequence.Append(_cardTransform.DOLocalMoveX(x, oneShakeDuration));
             }
             _shakeSequence.Append(_cardTransform.DOLocalMoveX(initialX, oneShakeDuration));
+        }
+
+        public void AnimateCorrectAnswer(Action endAction)
+        {
+            var initialScale = _cardTransform.localScale;
+            _cardTransform.localScale = initialScale * 0.75f;
+
+            var sequence = DOTween.Sequence();
+            sequence.Append(_cardTransform.DOScale(initialScale, _bounceDuration).SetEase(Ease.OutElastic));
+            sequence.AppendCallback(endAction.Invoke);
         }
 
         public void OnPointerClick(PointerEventData eventData)

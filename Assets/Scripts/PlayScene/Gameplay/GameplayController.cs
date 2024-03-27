@@ -154,7 +154,7 @@ namespace PlayScene.Gameplay
         {
             if (cell.CardData == _correctCard)
             {
-                OnCorrectCardSelected();
+                cell.AnimateCorrectAnswer(OnCorrectCardSelected);
             }
             else
             {
